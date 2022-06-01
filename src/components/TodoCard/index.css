@@ -1,0 +1,78 @@
+.todo-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex: 1;
+    margin-top: 10px;
+  }
+  
+  .checkbox-text{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  #edit-button{
+    background-color: #F0AD4E;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 8vw;
+    margin-right: 15px;
+    border-radius: 5px;
+  }
+  
+  #delete-button{
+    background-color: #D9534F;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 8vw;
+    margin-right: 15px;
+    border-radius: 5px;
+  }
+  
+  .todo-text{
+    margin-left: 10px;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 1.2em;
+  }
+  
+  input[type=checkbox] {
+    appearance: none;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    padding: 6px; 
+    background-clip: content-box;
+    border: 1.5px solid #bbbbbb;
+    border-radius: 6px;
+    background-color: #e7e6e7;
+    margin-left: 15px;
+    margin-right: 15px;
+  
+  }
+  
+  input[type=checkbox]:checked{
+    background-color: #ff0000;
+  }
+  
+  input[type=checkbox]:focus{
+    outline: none !important;
+  }
+  
+  .line{
+    border-bottom: solid  #EAEAEA thin;
+    width: 75vw;
+    align-self: center;  
+    margin-top: 15px;
+  }
+  
+  .todo-container{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
