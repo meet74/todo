@@ -1,14 +1,17 @@
 import './index.css';
-import React,{useState} from 'react'
+import React from 'react'
 
 
-const TodoCard = ({text = '', onEdit, onDelete,onChangeTextBox}) => {
+const TodoCard = ({text = '', onEdit, onDelete,onChangeTextBox,checked=false}) => {
     return(
         <div className='todo-container'> 
         <div className='todo-card'>
         <div className='checkbox-text'>
-        <input type={"checkbox"} id="checkbox" onChange={onChangeTextBox}/>
-         <p className='todo-text'>{text}</p>
+        <input type={"checkbox"} id="checkbox" onChange={onChangeTextBox}  checked={checked} />
+         <div>
+         <p className='todo-text' style={{textDecoration:checked?"line-through":"none"}}>{text}</p>
+         <p className='date-text' style={{textDecoration:checked?"line-through":"none"}}>{'20/02/2022'}</p>
+         </div>
         </div>
         <div>
           <button id='edit-button' onClick={onEdit}>Edit</button>

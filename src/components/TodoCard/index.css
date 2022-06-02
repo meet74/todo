@@ -1,10 +1,9 @@
 .todo-card{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    flex: 1;
-    margin-top: 10px;
+    margin: 10px 150px 10px 150px;
   }
   
   .checkbox-text{
@@ -21,6 +20,7 @@
     width: 8vw;
     margin-right: 15px;
     border-radius: 5px;
+    cursor: pointer;
   }
   
   #delete-button{
@@ -31,6 +31,7 @@
     width: 8vw;
     margin-right: 15px;
     border-radius: 5px;
+    cursor: pointer;
   }
   
   .todo-text{
@@ -38,6 +39,11 @@
     font-family: Roboto;
     font-weight: 500;
     font-size: 1.2em;
+  }
+
+  .date-text{
+    margin-left: 10px;
+    font-family: Roboto;
   }
   
   input[type=checkbox] {
@@ -52,7 +58,7 @@
     background-color: #e7e6e7;
     margin-left: 15px;
     margin-right: 15px;
-  
+    margin-top: 20px;
   }
   
   input[type=checkbox]:checked{
@@ -75,4 +81,26 @@
     flex-direction: column;
   }
   
+
+
+  @media screen and (max-width: 1200px) {
+    .todo-card{
+      margin: 10px 0px 10px 0px;
+    }
+    
+ 
+    #edit-button{
+      width: 15vw;
+    }
+    
+    #delete-button{
+      width: 15vw;
+    }
+    
+  
+    input[type=checkbox] {
+      margin-right: 15px;
+      margin-top: 20px;
+    }
+  }
   
