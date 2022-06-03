@@ -22,37 +22,7 @@
     background-color: white;
 }
 
-#add-todo-button{
-    background-color: #F0AD4E;
-    color: #282C34;
-    border: none;
-    padding: 10px;
-    width: 15vw;
-    height: 8vh;
-    margin-right: 15px;
-    border-radius: 5px;
-    font-weight: 700;
-    font-family: Roboto;
-    font-size: 0.8em;
-    margin-top: 25px;
-    cursor: pointer;
-  }
 
-  #cancel-todo-button{
-    background-color: #D9534F;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    width: 15vw;
-    height: 8vh;
-    margin-right: 15px;
-    border-radius: 5px;
-    font-weight: 700;
-    font-family: Roboto;
-    font-size: 0.8em;
-    margin-top: 25px;
-    cursor: pointer;
-  }
 
 
 .header-text{
@@ -75,33 +45,5 @@ input{
     .addpage-inner{
         width: 75%;
     }
-    #add-todo-button{
-        background-color: #F0AD4E;
-        color: #282C34;
-        border: none;
-        padding: 10px;
-        width: 25vw;
-        height: 5vh;
-        margin-right: 15px;
-        border-radius: 5px;
-        font-weight: 700;
-        font-family: Roboto;
-        font-size: 0.8em;
-        margin-top: 25px;
-      }
-    
-      #cancel-todo-button{
-        background-color: #D9534F;
-        color: #fff;
-        border: none;
-        padding: 10px;
-        width: 25vw;
-        height: 5vh;
-        margin-right: 15px;
-        border-radius: 5px;
-        font-weight: 700;
-        font-family: Roboto;
-        font-size: 0.8em;
-        margin-top: 25px;
-      }
+  
 }

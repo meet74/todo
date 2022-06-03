@@ -1,0 +1,50 @@
+ 
+input{
+    appearance: none;
+    border: groove thin grey;
+    height: 50px;
+    border-radius: 5px;
+    width: 250px;
+    margin-bottom: 25px;
+    padding-left: 8px;
+}
+
+
+input[type="email"]{
+  appearance: none;
+  border: groove thin grey;
+  height: 40px;
+  border-radius: 5px;
+  width: 250px;
+  margin-bottom: 25px;
+  padding-left: 8px;
+}
+
+input[type="password"]{
+  appearance: none;
+  border: groove thin grey;
+  height: 40px;
+  border-radius: 5px;
+  width: 250px;
+  margin-bottom: 25px;
+  padding-left: 8px;
+}
+
+input[type="search"]{
+  appearance: none;
+  border: groove thin grey;
+  height: 50px;
+  border-radius: 5px;
+  width: 300px;
+  margin-bottom: 25px;
+  margin-right: 15px;
+  padding-left: 8px;
+}
+
+  
+
+  @media screen and (max-width: 1350px){
+    input[type="search"]{  
+      width: 60vw;
+    }
+}
