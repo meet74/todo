@@ -23,7 +23,7 @@ function HomePage() {
            setShowModal(true)
           
         }}/>
-      <Link to={'/auth/login'}>
+      <Link to={'/auth/login'} >
       <button id='logout-button'>Logout</button>
       </Link>
       </header>

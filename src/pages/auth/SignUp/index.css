@@ -12,6 +12,11 @@
     justify-content: flex-end;
 }
 
+h5{
+    color: red;
+    margin-bottom: 20px;
+}
+
 .signup-box{
     position: absolute;
     background-color: #fff;
