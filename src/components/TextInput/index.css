@@ -45,6 +45,6 @@ input[type="search"]{
 
   @media screen and (max-width: 1350px){
     input[type="search"]{  
-      width: 60vw;
+      width: 40vw;
     }
 }

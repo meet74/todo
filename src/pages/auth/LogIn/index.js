@@ -11,7 +11,10 @@ function LogIn() {
           <p id='title-text'>Login</p>
           <TextInput placeholder='Email' type='email'/>
           <TextInput placeholder='Password'type='password'/>
+          <Link to={'/home'}>
           <Button title='Login' bgColor='#282C34' textColor='#fff'/>
+          </Link>
+         
           <p id='footer-text'>Does'nt have an account ? <Link to={'/auth/signup'}><label id='link-text'>SignUp</label></Link></p>
       </div>
     </div>

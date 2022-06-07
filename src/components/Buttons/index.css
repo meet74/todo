@@ -9,7 +9,6 @@
     font-family: Roboto;
     font-size: 0.8em;
     cursor: pointer;
-    margin-top:20px ;
   }
 
 
@@ -18,5 +17,6 @@
     #btn-style{
       width: 20vw;
       height: 5vh;
+      margin-top:5px ;
     }
   }

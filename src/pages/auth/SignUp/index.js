@@ -11,8 +11,10 @@ function SignUp() {
           <p id='title-text'>Signup</p>
           <TextInput placeholder='Email' type='email'/>
           <TextInput placeholder='Password'type='password'/>
+          <Link to={'/home'}>
           <Button title='Signup' bgColor='#282C34' textColor='#fff'/>
-          <p id='footer-text'>Have an account ? <Link to={'/auth/signup'}><label id='link-text'>Login</label></Link></p>
+          </Link>
+          <p id='footer-text'>Have an account ? <Link to='/auth/login'><label id='link-text'>Login</label></Link></p>
       </div>
     </div>
   )

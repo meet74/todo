@@ -6,6 +6,7 @@ import AddPage from "../../components/AddPage";
 import DeletePopUp from "../../components/DeletePopUp";
 import TextInput from "../../components/TextInput";
 import Button from "../../components/Buttons";
+import { Link, Navigate } from "react-router-dom";
 
 
 function HomePage() {
@@ -22,13 +23,15 @@ function HomePage() {
            setShowModal(true)
           
         }}/>
-       
+      <Link to={'/auth/login'}>
+      <button id='logout-button'>Logout</button>
+      </Link>
       </header>
       <main>
         <h3>Items I Need To Do</h3>
         <p>Check off items once you have completed them</p>
 
-        <div>
+        <div style={{display:"flex",justifyContent:"center",alignContent:"center",marginTop:"20px"}}>
           <TextInput type="search"/>
           <Button  title="Search" bgColor="#282C34" textColor="#fff" />
         </div>
