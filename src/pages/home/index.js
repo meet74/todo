@@ -13,6 +13,12 @@ function HomePage() {
     const [checked, setchecked] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+    const submitHandler = () => {
+     
+    }
+
+    
   return (
     <div className="App">
       <header className="App-header">
@@ -46,9 +52,11 @@ function HomePage() {
           onCancel={()=>{
             setShowModal(false)
           }}
+
           />
           <DeletePopUp
           trigger={showDeleteModal}
+          onDelete={submitHandler}
           onCancel={()=>{
             setShowDeleteModal(false)
           }}
