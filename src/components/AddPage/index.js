@@ -5,7 +5,7 @@ import TextInput from '../TextInput';
 import Button from '../Buttons';
 
 
-const AddPage = ({trigger = true, onCancel, onAdd}) => {
+const AddPage = ({trigger = true, onCancel, onAdd,userId}) => {
     const [title, setTitle] = useState('');
     const [date, setDate] = useState('')
     const animation = useSpring({
@@ -18,8 +18,9 @@ const AddPage = ({trigger = true, onCancel, onAdd}) => {
 
     const addSubmitHandler = () => {
         console.log('shreehari',date+title);
+        onAdd();
         const data = {
-          userId:"25abe96d-03ea-4c6a-a907-a505347f3538",
+          userId:userId,
           title:title,
           date:date,
           checked:false
@@ -31,7 +32,7 @@ const AddPage = ({trigger = true, onCancel, onAdd}) => {
         },
          body:JSON.stringify(data),
         }).then(res=>{
-            console.log(res);
+            console.log(res);   
         }).catch(err=>{
             console.log(err);
         })

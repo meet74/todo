@@ -10,10 +10,12 @@ function LogIn(props) {
   const [error, setError] = useState('')
   const nav = useNavigate();
   const submitHandler = () => {
-    fetch(`http://192.168.1.7:5000/auth/login?email=${email}&password=${password}`).then(res=>{
+    fetch(`http://192.168.1.7:5000/auth/login?email=${email}&password=${password}`).then(async (res)=>{
       console.log(res.status);
+      
      if (res.status === 200) {
-      nav('/home');
+      const response = await res.json();
+      nav('/home',{state:response});
       setError('')
      }else if(res.status === 400){
       console.log('error');

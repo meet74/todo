@@ -2,7 +2,7 @@ import './index.css';
 import React from 'react'
 
 
-const TodoCard = ({text = '', onEdit, onDelete,onChangeTextBox,checked=false}) => {
+const TodoCard = ({text = '', onEdit, onDelete,onChangeTextBox,checked=false,date=''}) => {
     return(
         <div className='todo-container'> 
         <div className='todo-card'>
@@ -10,7 +10,7 @@ const TodoCard = ({text = '', onEdit, onDelete,onChangeTextBox,checked=false}) =
         <input type={"checkbox"} id="checkbox" onChange={onChangeTextBox}  checked={checked} />
          <div>
          <p className='todo-text' style={{textDecoration:checked?"line-through":"none"}}>{text}</p>
-         <p className='date-text' style={{textDecoration:checked?"line-through":"none"}}>{'20/02/2022'}</p>
+         <p className='date-text' style={{textDecoration:checked?"line-through":"none"}}>{date}</p>
          </div>
         </div>
         <div>
