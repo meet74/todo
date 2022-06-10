@@ -11,6 +11,7 @@ import moment from 'moment';
 
 function HomePage() {
   const [checked, setchecked] = useState(false);
+  const [deleteLoader, setDeleteLoader] = useState(false)
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [todos, settodos] = useState([]);
@@ -18,16 +19,17 @@ function HomePage() {
   const [isUpdate, setisUpdate] = useState(false)
   const deleteSubmitHandler = async() => {
     setShowDeleteModal(false);
-
+    setDeleteLoader(true);
     const response = await fetch(
-      `http://192.168.1.58:5000/home/deletetodo?userid=${state.data.userId}&todoId=${todo.todoId}`,
+      `https://todo-api-74.herokuapp.com/home/deletetodo?userid=${state.data.userId}&todoId=${todo.todoId}`,
       {
         method:"DELETE",
       }
     );
     const res = await response.json();
     settodos(res.todo);
-    settodo({})
+    settodo({});
+    setDeleteLoader(false);
   };
   
   const updateCheckbox = async(check,todoId) => {
@@ -38,7 +40,7 @@ function HomePage() {
     }
 
    fetch(
-      `http://192.168.1.58:5000/home/updatecheckbox?userid=${state.data.userId}&todoId=${todoId}&checked=${check}`,
+      `https://todo-api-74.herokuapp.com/home/updatecheckbox?userid=${state.data.userId}&todoId=${todoId}&checked=${check}`,
       {
         method:"PATCH",
         body:JSON.stringify(data)
@@ -53,7 +55,7 @@ function HomePage() {
   const load = async () => {
     settodo({})
     const response = await fetch(
-      `http://192.168.1.58:5000/home/gettodos?userid=${state.data.userId}`,
+      `https://todo-api-74.herokuapp.com/home/gettodos?userid=${state.data.userId}`,
       {
         method:"GET"
       }
@@ -132,6 +134,7 @@ function HomePage() {
             onCancel={() => {
               setShowDeleteModal(false);
             }}
+            loader={deleteLoader}
           />
           { todos.length<=0
               ? <div>

@@ -7,10 +7,12 @@ import { Link,useNavigate } from 'react-router-dom'
 function LogIn(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('')
+  const [error, setError] = useState('');
+  const [loader, setloader] = useState(false);
   const nav = useNavigate();
   const submitHandler = () => {
-    fetch(`http://192.168.1.58:5000/auth/login?email=${email}&password=${password}`).then(async (res)=>{
+    setloader(true);
+    fetch(`https://todo-api-74.herokuapp.com/auth/login?email=${email}&password=${password}`).then(async (res)=>{
    
       
      if (res.status === 200) {
@@ -29,6 +31,8 @@ function LogIn(props) {
     }).catch(err=>{
       console.log(err);
       setError('Something went wrong')
+    }).finally(()=>{
+      setloader(false);
     })
   }
 
@@ -36,7 +40,7 @@ function LogIn(props) {
   return (
     <div className='login-container'>
       <div className='login-box'>
-          <p id='title-text'>Login</p>
+          <p id='title-text'>{'Login'}</p>
           {error.length>0 && <h5>{error}</h5>}
           <TextInput placeholder='Email' type='email' onChange={(e)=>{
             setEmail(e.target.value)
@@ -49,7 +53,7 @@ function LogIn(props) {
             
             }}/>
           {/* <Link to={'/home'}> */}
-          <Button title='Login' bgColor='#282C34' textColor='#fff' onClick={submitHandler}/>
+          <Button title={loader ?'Login...':'Login'} bgColor='#282C34' textColor='#fff' onClick={submitHandler}/>
           {/* </Link> */}
          
           <p id='footer-text'>Does'nt have an account ? <Link to={'/auth/signup'}><label id='link-text'>SignUp</label></Link></p>

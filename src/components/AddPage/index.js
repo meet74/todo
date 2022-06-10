@@ -9,7 +9,7 @@ const AddPage = ({ trigger = true, onCancel, onAdd, userId, isUpdate = false, to
 
     const [title, setTitle] = useState(todo.title);
     const [date, setDate] = useState(isUpdate ? todo.date : moment(Date.now()).format('YYYY-MM-DD'))
-
+    const [loader, setloader] = useState(false)
     const animation = useSpring({
         config: {
             duration: 250
@@ -29,7 +29,7 @@ const AddPage = ({ trigger = true, onCancel, onAdd, userId, isUpdate = false, to
 
 
     const addSubmitHandler = () => {
- 
+        setloader(true);
        
         const data = {
             userId: userId,
@@ -37,7 +37,7 @@ const AddPage = ({ trigger = true, onCancel, onAdd, userId, isUpdate = false, to
             date: date,
             checked: false,
         }
-        fetch('http://192.168.1.58:5000/home/addTodo', {
+        fetch('https://todo-api-74.herokuapp.com/home/addTodo', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -48,6 +48,8 @@ const AddPage = ({ trigger = true, onCancel, onAdd, userId, isUpdate = false, to
             console.log(res);
         }).catch(err => {
             console.log(err);
+        }).finally(()=>{
+            setloader(false);
         })
     }
 
@@ -59,8 +61,8 @@ const AddPage = ({ trigger = true, onCancel, onAdd, userId, isUpdate = false, to
             checked: false,
             todoId: todo.todoId
         }
-   
-        fetch('http://192.168.1.58:5000/home/updatetodo', {
+        setloader(true);
+        fetch('https://todo-api-74.herokuapp.com/home/updatetodo', {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
@@ -71,6 +73,8 @@ const AddPage = ({ trigger = true, onCancel, onAdd, userId, isUpdate = false, to
             onAdd();
         }).catch(err => {
             console.log(err);
+        }).finally(()=>{
+            setloader(false);
         })
     }
 
@@ -89,8 +93,8 @@ const AddPage = ({ trigger = true, onCancel, onAdd, userId, isUpdate = false, to
                 </div>
                 <div>
                     {
-                        isUpdate ? <Button title="Update Todo" bgColor="#F0AD4E" textColor="#282C34" onClick={updateHandler} />
-                            : <Button title="Add Todo" bgColor="#F0AD4E" textColor="#282C34" onClick={addSubmitHandler} />
+                        isUpdate ? <Button title={loader?'Updating...':"Update Todo"} bgColor="#F0AD4E" textColor="#282C34" onClick={updateHandler} />
+                            : <Button title={loader ?'Adding...':"Add Todo"} bgColor="#F0AD4E" textColor="#282C34" onClick={addSubmitHandler} />
                     }
                     <Button title="Cancel" bgColor="#D9534F" textColor="#fff" onClick={onCancel} />
                 </div>

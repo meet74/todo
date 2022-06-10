@@ -4,7 +4,7 @@ import {animated, useSpring} from 'react-spring'
 import Button from '../Buttons';
 
 
-const DeletePopUp = ({trigger = true, onCancel, onDelete}) => {
+const DeletePopUp = ({trigger = true, onCancel, onDelete,loader = false}) => {
 
     const animation = useSpring({
         config:{
@@ -21,7 +21,7 @@ const DeletePopUp = ({trigger = true, onCancel, onDelete}) => {
            <h1> Delete TODO</h1>
            <h3>Are you sure want to Delete ?</h3>
            <div>
-           <Button  title="Delete" bgColor="#D9534F" textColor="#fff"  onClick={onDelete}/>
+           <Button  title={loader?'Deleting...':"Delete"} bgColor="#D9534F" textColor="#fff"  onClick={onDelete}/>
            <Button  title="Cancel" bgColor="#F0AD4E" textColor="#282C34"  onClick={onCancel}/>
            </div>
            </div>
