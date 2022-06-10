@@ -7,19 +7,41 @@ import DeletePopUp from "../../components/DeletePopUp";
 import TextInput from "../../components/TextInput";
 import Button from "../../components/Buttons";
 import { Link, Navigate, useLocation } from "react-router-dom";
+import moment from 'moment';
 
 function HomePage() {
   const [checked, setchecked] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [todos, settodos] = useState([]);
-  const submitHandler = () => {};
-  const load = async () => {
+  const [todo, settodo] = useState({});
+  const [isUpdate, setisUpdate] = useState(false)
+  const deleteSubmitHandler = async() => {
+    setShowDeleteModal(false);
+    console.log(todo);
     const response = await fetch(
-      `http://192.168.1.7:5000/home/gettodos?userid=${state.data.userId}`
+      `http://192.168.1.58:5000/home/deletetodo?userid=${state.data.userId}&todoId=${todo.todoId}`,
+      {
+        method:"DELETE",
+      }
     );
     const res = await response.json();
     settodos(res.todo);
+    settodo({})
+  };
+  
+  const load = async () => {
+    settodo({})
+    const response = await fetch(
+      `http://192.168.1.58:5000/home/gettodos?userid=${state.data.userId}`,
+      {
+        method:"GET"
+      }
+    );
+    const res = await response.json();
+   
+    settodos(res.todo[0].todos);
+    
   };
   const {state} = useLocation();
   
@@ -27,10 +49,10 @@ function HomePage() {
     load();
   }, []);
 
- //  console.log(todos[0].todos);
-  if (todos.length<=0) {
-  return <h1>Loding....</h1>    
-  }
+
+   if (todos.length<=0) {
+    return <h1>Loding....</h1>    
+    }
   return (
     <div className="App">
       <header className="App-header">
@@ -42,6 +64,8 @@ function HomePage() {
           bgColor="#F0AD4E"
           textColor="#282C34"
           onClick={() => {
+            settodo({});
+            setisUpdate(false)
             setShowModal(true);
           }}
         />
@@ -68,31 +92,44 @@ function HomePage() {
           <AddPage
             userId={state.data.userId}
             trigger={showModal}
+            todo={todo ? todo:{}}
+            isUpdate={isUpdate ? true:false}
             onCancel={() => {
               setShowModal(false);
             }}
             onAdd={() => {
-              setShowModal(false);
               load();
+              setShowModal(false);
+              
             }}
           />
           <DeletePopUp
             trigger={showDeleteModal}
-            onDelete={submitHandler}
+            onDelete={deleteSubmitHandler}
             onCancel={() => {
               setShowDeleteModal(false);
             }}
           />
-          {todos[0].todos.map((todo, index) => {
-            return todos[0].todos.length <= 0
+          {todos.map((todo, index) => {
+            const date = moment(todo.date).format("DD-MM-YYYY");
+            console.log(todo);
+            return todos.length <= 0
               ? <div>
                   <h1>No Todos found</h1>
                 </div>
               : <TodoCard
                   text={todo.title}
-                  date={todo.date}
-                  onEdit={() => setShowModal(true)}
-                  onDelete={() => setShowDeleteModal(true)}
+                  date={date}
+                  onEdit={() => {
+                    setShowModal(true)
+                    setisUpdate(true)
+                    settodo(todo)
+                  }}
+                  onDelete={() => {
+                    setShowDeleteModal(true);
+                    settodo(todo)
+                  
+                  }}
                   onChangeTextBox={e => {
                     setchecked(e.nativeEvent.target.checked);
                   }}
