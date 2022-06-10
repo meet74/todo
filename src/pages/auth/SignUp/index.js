@@ -11,10 +11,13 @@ function SignUp() {
   const [error, setError] = useState('')
   const nav = useNavigate();
   const submitHandler = () => {
-    fetch(`http://192.168.1.7:5000/auth/signup?name=${name}&email=${email}&password=${password}`).then(res=>{
-      console.log(res.status);
+   
+    fetch(`http://192.168.1.58:5000/auth/signup?name=${name}&email=${email}&password=${password}`).then(async res=>{
+      
      if (res.status === 200) {
-      nav('/home');
+      const response = await res.json();
+      
+      nav('/home',{state:response});
       setError('')
      }else if(res.status === 401){
        console.log('error');

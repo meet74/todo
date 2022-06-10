@@ -9,7 +9,7 @@ const AddPage = ({ trigger = true, onCancel, onAdd, userId, isUpdate = false, to
 
     const [title, setTitle] = useState(todo.title);
     const [date, setDate] = useState(isUpdate ? todo.date : moment(Date.now()).format('YYYY-MM-DD'))
-    //console.log(moment(Date.now()).format('MM-DD-YYYY'));
+
     const animation = useSpring({
         config: {
             duration: 250
@@ -21,15 +21,15 @@ const AddPage = ({ trigger = true, onCancel, onAdd, userId, isUpdate = false, to
         if (isUpdate) {
             setTitle(todo.title);
             setDate(todo.date);
-            console.log('calling...');
+    
         }else{
             setDate( moment(Date.now()).format('YYYY-MM-DD'));
         }
     }, [todo])
 
-    console.log('todo',date);
+
     const addSubmitHandler = () => {
-        console.log('shreehari', date + title);
+ 
        
         const data = {
             userId: userId,
@@ -59,8 +59,7 @@ const AddPage = ({ trigger = true, onCancel, onAdd, userId, isUpdate = false, to
             checked: false,
             todoId: todo.todoId
         }
-        console.log(data);
-    
+   
         fetch('http://192.168.1.58:5000/home/updatetodo', {
             method: "PUT",
             headers: {
@@ -74,7 +73,7 @@ const AddPage = ({ trigger = true, onCancel, onAdd, userId, isUpdate = false, to
             console.log(err);
         })
     }
-    console.log(todo);
+
     return (trigger) && (
 
         <animated.div style={animation} className='addpage-container' >

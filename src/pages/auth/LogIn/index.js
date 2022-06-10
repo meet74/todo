@@ -11,7 +11,7 @@ function LogIn(props) {
   const nav = useNavigate();
   const submitHandler = () => {
     fetch(`http://192.168.1.58:5000/auth/login?email=${email}&password=${password}`).then(async (res)=>{
-      console.log(res.status);
+   
       
      if (res.status === 200) {
       const response = await res.json();

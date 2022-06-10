@@ -18,7 +18,7 @@ function HomePage() {
   const [isUpdate, setisUpdate] = useState(false)
   const deleteSubmitHandler = async() => {
     setShowDeleteModal(false);
-    console.log(todo);
+
     const response = await fetch(
       `http://192.168.1.58:5000/home/deletetodo?userid=${state.data.userId}&todoId=${todo.todoId}`,
       {
@@ -30,6 +30,26 @@ function HomePage() {
     settodo({})
   };
   
+  const updateCheckbox = async(check,todoId) => {
+    const data = {
+      userId:state.data.userId,
+      todoId:todo.todoId,
+      checked:check
+    }
+
+   fetch(
+      `http://192.168.1.58:5000/home/updatecheckbox?userid=${state.data.userId}&todoId=${todoId}&checked=${check}`,
+      {
+        method:"PATCH",
+        body:JSON.stringify(data)
+      }
+    ).then(res=>{
+      load();
+    }).catch(err=>{
+      console.log(err);
+    })
+   
+  }
   const load = async () => {
     settodo({})
     const response = await fetch(
@@ -39,8 +59,12 @@ function HomePage() {
       }
     );
     const res = await response.json();
-   
-    settodos(res.todo[0].todos);
+
+    if (response.status === 200) {
+      settodos(res.todo[0].todos);
+    }else{
+      settodos([])
+    }
     
   };
   const {state} = useLocation();
@@ -49,8 +73,7 @@ function HomePage() {
     load();
   }, []);
 
-
-   if (todos.length<=0) {
+   if (todos.length<0) {
     return <h1>Loding....</h1>    
     }
   return (
@@ -110,14 +133,14 @@ function HomePage() {
               setShowDeleteModal(false);
             }}
           />
-          {todos.map((todo, index) => {
-            const date = moment(todo.date).format("DD-MM-YYYY");
-            console.log(todo);
-            return todos.length <= 0
+          { todos.length<=0
               ? <div>
                   <h1>No Todos found</h1>
                 </div>
-              : <TodoCard
+              : todos.map((todo, index) => {
+            const date = moment(todo.date).format("DD-MM-YYYY");
+            
+            return<TodoCard
                   text={todo.title}
                   date={date}
                   onEdit={() => {
@@ -131,7 +154,11 @@ function HomePage() {
                   
                   }}
                   onChangeTextBox={e => {
-                    setchecked(e.nativeEvent.target.checked);
+                 
+                    settodo(todo)
+                    updateCheckbox(e.nativeEvent.target.checked,todo.todoId);
+                    
+                    //setchecked(e.nativeEvent.target.checked);
                   }}
                   checked={todo.checked}
                 />;

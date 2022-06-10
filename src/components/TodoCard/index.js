@@ -1,13 +1,18 @@
 import './index.css';
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 
 
-const TodoCard = ({text = '', onEdit, onDelete,onChangeTextBox,checked=false,date=''}) => {
-    return(
+const TodoCard = ({text = '', onEdit, onDelete,onChangeTextBox,checked=true,date=''}) => {
+  const [check, setcheck] = useState(checked);
+  useEffect(() => {
+    setcheck(checked)
+  }, [checked])
+  
+  return(
         <div className='todo-container'> 
         <div className='todo-card'>
         <div className='checkbox-text'>
-        <input type={"checkbox"} id="checkbox" onChange={onChangeTextBox}  checked={checked} />
+        <input type={"checkbox"} id="checkbox" onChange={onChangeTextBox} checked={check}  defaultValue={checked} />
          <div>
          <p className='todo-text' style={{textDecoration:checked?"line-through":"none"}}>{text}</p>
          <p className='date-text' style={{textDecoration:checked?"line-through":"none"}}>{date}</p>
