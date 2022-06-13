@@ -13,6 +13,11 @@
     cursor: pointer;
   }
   
+  .loader-style{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+  }
   
   .App-header {
     background-color: #282c34;
@@ -48,6 +53,8 @@
     border-radius: 50px;
     background-color: #282C34;
   }
+  
+  
   
   /* #add-button{
     width: 50vw;
